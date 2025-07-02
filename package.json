@@ -1,6 +1,5 @@
 {
   "name": "json-compare-pro",
-  "type": "module",
   "displayName": "json-compare-pro",
   "description": "json compare pro",
   "version": "0.0.1",
@@ -17,8 +16,21 @@
       {
         "command": "json-compare-pro.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "json-compare-pro.compareThisTwo",
+        "title": "JSON Compare This Two"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "json-compare-pro.compareThisTwo",
+          "when": "explorerResourceIsFolder == false && resourceExtname == .json",
+          "group": "7_modification"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
