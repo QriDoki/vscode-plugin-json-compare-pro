@@ -2,11 +2,11 @@
  * 将 JavaScript 对象序列化为带有结尾逗号的 JSON 字符串。
  * 这种格式不是标准的 JSON，但被很多开发工具支持。
  *
- * @param {object} obj 需要序列化的对象
- * @param {number|string} space 用于美化输出的空格数或字符串，默认为 4
- * @returns {string} 带有结尾逗号的 JSON 字符串
+ * @param obj 需要序列化的对象
+ * @param space 用于美化输出的空格数或字符串，默认为 4
+ * @returns 带有结尾逗号的 JSON 字符串
  */
-export function formatJson(obj, space = 4) {
+export function formatJson(obj: any, space: number | string = 4): string {
   // 1. 先生成一个标准的美化版 JSON 字符串
   // 必须使用 space 参数，否则正则表达式无法工作
   const baseJson = JSON.stringify(obj, null, space);

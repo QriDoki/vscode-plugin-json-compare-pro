@@ -4,11 +4,11 @@ import { JSONPath } from 'jsonpath-plus';
 /**
  * 预处理 arraySortKey 配置，将类似 '$.words[*]' 的路径模式转换成
  * 指向数组本身的路径 '$.words'，便于在递归中直接匹配。
- * @param {object} arraySortKey - 原始的排序配置。
- * @returns {Map<string, string>} - 转换后的 Map，键为数组的 JSONPath，值为排序键的 JSONPath。
+ * @param arraySortKey - 原始的排序配置。
+ * @returns 转换后的 Map，键为数组的 JSONPath，值为排序键的 JSONPath。
  */
-export function preprocessArraySortKeys(arraySortKey) {
-    const map = new Map();
+export function preprocessArraySortKeys(arraySortKey: Record<string, string> | undefined): Map<string, string> {
+    const map = new Map<string, string>();
     if (!arraySortKey) {
         return map;
     }
@@ -35,12 +35,12 @@ export function preprocessArraySortKeys(arraySortKey) {
 
 /**
  * 递归排序的核心函数
- * @param {any} currentValue - 当前正在处理的值（对象、数组或原始类型）
- * @param {string} currentPath - 当前值的 JSONPath
- * @param {Map<string, string>} arraySortKeyMap - 预处理后的数组排序规则
- * @returns {any} - 排序后的值
+ * @param currentValue - 当前正在处理的值（对象、数组或原始类型）
+ * @param currentPath - 当前值的 JSONPath
+ * @param arraySortKeyMap - 预处理后的数组排序规则
+ * @returns 排序后的值
  */
-function _recursiveSort(currentValue, currentPath, arraySortKeyMap) {
+function _recursiveSort(currentValue: any, currentPath: string, arraySortKeyMap: Map<string, string>): any {
     // 1. 基准情况：如果不是对象或为 null，直接返回
     if (currentValue === null || typeof currentValue !== 'object') {
         return currentValue;
@@ -61,13 +61,12 @@ function _recursiveSort(currentValue, currentPath, arraySortKeyMap) {
         if (sortRule) {
             // 规则存在，按规则排序 (通常用于对象数组)
             processedArray.sort((a, b) => {
-                const keyPath = sortRule
+                const keyPath = sortRule;
 
                 // 使用 JSONPath 获取用于排序的实际值
                 // wrap: false 确保在未找到时返回 undefined 而不是数组
-                // preventEval: true 增加安全性，防止执行恶意代码
-                const valA = JSONPath({ path: keyPath, json: a, wrap: false, preventEval: true });
-                const valB = JSONPath({ path: keyPath, json: b, wrap: false, preventEval: true });
+                const valA = JSONPath({ path: keyPath, json: a, wrap: false });
+                const valB = JSONPath({ path: keyPath, json: b, wrap: false });
 
                 // 处理排序键不存在的情况，将它们排在后面
                 if (valA === undefined || valA === null) return 1;
@@ -94,7 +93,7 @@ function _recursiveSort(currentValue, currentPath, arraySortKeyMap) {
     }
 
     // 3. 如果是对象 (Map)
-    const sortedObj = {};
+    const sortedObj: Record<string, any> = {};
     const sortedKeys = Object.keys(currentValue).sort(); // 核心：对对象的键进行字母排序
 
     for (const key of sortedKeys) {
@@ -107,15 +106,20 @@ function _recursiveSort(currentValue, currentPath, arraySortKeyMap) {
     return sortedObj;
 }
 
+/**
+ * diffConfig 接口定义
+ */
+interface DiffConfig {
+    arraySortKey?: Record<string, string>;
+}
 
 /**
  * 主函数：递归地对 JSON 对象进行排序
- * @param {object} data - 要排序的原始 JSON 对象。
- * @param {object} diffConfig - 包含排序规则的配置对象。
- * @param {object} diffConfig.arraySortKey - 定义数组排序规则的 Map。
- * @returns {object} - 一个新的、深度排序后的 JSON 对象。
+ * @param data - 要排序的原始 JSON 对象。
+ * @param diffConfig - 包含排序规则的配置对象。
+ * @returns 一个新的、深度排序后的 JSON 对象。
  */
-export function sortJsonRecursively(data, diffConfig = {}) {
+export function sortJsonRecursively(data: any, diffConfig: DiffConfig = {}): any {
     // 为了不修改原始对象，我们先进行一次深拷贝
     const dataCopy = JSON.parse(JSON.stringify(data));
     
