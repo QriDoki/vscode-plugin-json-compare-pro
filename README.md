@@ -33,9 +33,11 @@
 ```
 #### leftFilesPattern
 寻找需要对比的json的左边, 通过正则匹配`json-compare-config.json`相同文件夹下的文件  
+(路径不要带`./`)  
 
 #### rightFilesPattern
 对匹配到的结果, 通过`rightFilesPattern`的模板进行正则替换, 将匹配的文件进行对比  
+(路径不要带`./`)  
 
 #### diffConfig
 见下文`diffConfig`  
