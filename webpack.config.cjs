@@ -16,7 +16,7 @@ const extensionConfig = {
   output: {
     // the bundle is stored in the 'dist' folder (check package.json), 📖 -> https://webpack.js.org/configuration/output/
     path: path.resolve(__dirname, 'dist'),
-    filename: 'extension.js',
+    filename: 'extension.cjs',
     libraryTarget: 'commonjs2'
   },
   externals: {
@@ -26,8 +26,8 @@ const extensionConfig = {
   resolve: {
     // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
     extensions: ['.ts', '.js'],
-    extensionAlias: {
-      '.js': ['.js', '.ts']
+    alias: {
+      './sortJson.js': path.resolve(__dirname, 'src/sortJson.ts')
     }
   },
   module: {

@@ -1,5 +1,6 @@
 {
   "name": "json-compare-pro",
+  "type": "module",
   "displayName": "json-compare-pro",
   "description": "json compare pro",
   "version": "0.0.1",
@@ -10,12 +11,16 @@
     "Other"
   ],
   "activationEvents": [],
-  "main": "./dist/extension.js",
+  "main": "./dist/extension.cjs",
   "contributes": {
     "commands": [
       {
         "command": "json-compare-pro.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "json-compare-pro.compareWithConfig",
+        "title": "Compare based on this config"
       },
       {
         "command": "json-compare-pro.compareThisTwo",
@@ -24,6 +29,11 @@
     ],
     "menus": {
       "explorer/context": [
+        {
+          "when": "resourceFilename == 'json-compare-config.json'",
+          "command": "json-compare-pro.compareWithConfig",
+          "group": "navigation"
+        },
         {
           "command": "json-compare-pro.compareThisTwo",
           "when": "explorerResourceIsFolder == false && resourceExtname == .json",
