@@ -1,9 +1,8 @@
-# json-compare-pro 使用说明
 <p align="center">
-  <img href="https://raw.githubusercontent.com/QriDoki/vscode-plugin-json-compare-pro/refs/heads/main/static/logo.png"></img>
+  <img src="https://raw.githubusercontent.com/QriDoki/vscode-plugin-json-compare-pro/main/.github/images/logo.png" alt="logo"></img>
 </p>
 
-这是 "json-compare-pro" 扩展的使用说明文档。这是一个强大的 JSON 文件比较工具，可以帮助您更高效地比较和分析 JSON 文件。
+**JSON Compare Pro** 是一个强大的 JSON 文件比较工具，可以帮助您更高效地比较和分析 JSON 文件。
 
 ## 功能特点
 这个扩展提供以下核心功能：
@@ -31,15 +30,15 @@
     }
 }
 ```
-#### leftFilesPattern
+#### `leftFilesPattern`
 寻找需要对比的json的左边, 通过正则匹配`json-compare-config.json`相同文件夹下的文件  
 (路径不要带`./`)  
 
-#### rightFilesPattern
+#### `rightFilesPattern`
 对匹配到的结果, 通过`rightFilesPattern`的模板进行正则替换, 将匹配的文件进行对比  
 (路径不要带`./`)  
 
-#### diffConfig
+#### `diffConfig`
 见下文`diffConfig`  
 
 ## `diffConfig`
@@ -51,7 +50,7 @@
 }
 ```
 
-#### `arraySortKey`
+### `arraySortKey`
 key和value都是jsonPath  
 对于key中的path的json数组, 使用以其为根的 value的jsonPath指定的字段作为排序key, 为这个json数组排序  
 
