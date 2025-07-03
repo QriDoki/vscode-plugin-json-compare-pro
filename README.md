@@ -1,71 +1,56 @@
-# json-compare-pro README
+# json-compare-pro 使用说明
+<p align="center">
+  <img href="https://raw.githubusercontent.com/QriDoki/vscode-plugin-json-compare-pro/refs/heads/main/static/logo.png"></img>
+</p>
 
-This is the README for your extension "json-compare-pro". After writing up a brief description, we recommend including the following sections.
+这是 "json-compare-pro" 扩展的使用说明文档。这是一个强大的 JSON 文件比较工具，可以帮助您更高效地比较和分析 JSON 文件。
 
-## Features
+## 功能特点
+这个扩展提供以下核心功能：
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- 比较两个 JSON 文件的差异
+- 根据配置文件进行批量比较
+- 支持自定义排序规则进行 JSON 文件比较
 
-For example if there is an image subfolder under your extension project workspace:
+## 使用
+### 选中json文件对比
+在资源管理器中选中两个json文件(按住ctrl或者command可以多选文件), 右键, 点击`JSON Compare This Two`, 之后会出现一个弹窗, 让您输入一份`diffConfig`, 可以选择不输入. `diffConfig`的详细介绍见下文  
 
-\!\[feature X\]\(images/feature-x.png\)
+### 使用`json-compare-config.json`进行批量对比
+右键`json-compare-config.json`文件, 会出现一个`Compare based on this config`选项, 点击 会根据其中的配置 找寻文件夹下的需要对比的文件  
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+在[本项目的`test-files`目录](https://github.com/QriDoki/vscode-plugin-json-compare-pro/tree/main/test-files)下, 有使用示例  
+```json
+{
+    "leftFilesPattern": "left-(\\d+)/zuo-(\\d+).json",
+    "rightFilesPattern": "right-$1/you-$2.json",
+    "diffConfig": {
+        "arraySortKey": {
+            "$.scores[*]": "$.subject"
+        }
+    }
+}
+```
+#### leftFilesPattern
+寻找需要对比的json的左边, 通过正则匹配`json-compare-config.json`相同文件夹下的文件  
 
-## Requirements
+#### rightFilesPattern
+对匹配到的结果, 通过`rightFilesPattern`的模板进行正则替换, 将匹配的文件进行对比  
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+#### diffConfig
+见下文`diffConfig`  
 
-## Extension Settings
+## `diffConfig`
+```json
+{
+    "arraySortKey": {
+        "$.scores[*]": "$.subject"
+    }
+}
+```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+#### `arraySortKey`
+key和value都是jsonPath  
+对于key中的path的json数组, 使用以其为根的 value的jsonPath指定的字段作为排序key, 为这个json数组排序  
 
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+**🎉祝您使用愉快🎉**

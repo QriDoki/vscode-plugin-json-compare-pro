@@ -1,3 +1,13 @@
 {
-    "id": 10
+    "id": 10,
+    "scores": [
+        {
+            "subject": "English",
+            "score": 88
+        },
+        {
+            "subject": "Math",
+            "score": 42
+        }
+    ]
 }

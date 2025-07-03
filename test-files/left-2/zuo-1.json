@@ -1,4 +1,14 @@
 {
     "id": 10,
-    "name": "123"
+    "name": "123",
+    "scores": [
+        {
+            "subject": "Math",
+            "score": 90
+        },
+        {
+            "subject": "English",
+            "score": 95
+        }
+    ]
 }

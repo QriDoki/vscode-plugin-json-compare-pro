@@ -3,7 +3,7 @@
     "rightFilesPattern": "right-$1/you-$2.json",
     "diffConfig": {
         "arraySortKey": {
-            "$.itineraryInfo[*]": "$.sequence"
+            "$.scores[*]": "$.subject"
         }
     }
 }
