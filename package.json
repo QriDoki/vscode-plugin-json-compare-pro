@@ -1,8 +1,8 @@
 {
   "name": "json-compare-pro",
   "type": "module",
-  "displayName": "json-compare-pro",
-  "description": "json compare pro",
+  "displayName": "JSON Compare Pro",
+  "description": "Compare JSON files with rules",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.101.0"
