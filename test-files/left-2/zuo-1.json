@@ -4,11 +4,13 @@
     "scores": [
         {
             "subject": "Math",
-            "score": 90
+            "score": 90,
+            "someNull": null
         },
         {
             "subject": "English",
-            "score": 95
+            "score": 95,
+            "someNull": null
         }
     ]
 }

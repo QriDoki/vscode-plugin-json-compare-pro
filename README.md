@@ -26,7 +26,8 @@
     "diffConfig": {
         "arraySortKey": {
             "$.scores[*]": "$.subject"
-        }
+        },
+        "dismissNull": true
     }
 }
 ```
@@ -46,12 +47,16 @@
 {
     "arraySortKey": {
         "$.scores[*]": "$.subject"
-    }
+    },
+    "dismissNull": true
 }
 ```
 
 ### `arraySortKey`
 key和value都是jsonPath  
 对于key中的path的json数组, 使用以其为根的 value的jsonPath指定的字段作为排序key, 为这个json数组排序  
+
+### `dismissNull`
+不展示值为null的字段  
 
 **🎉祝您使用愉快🎉**

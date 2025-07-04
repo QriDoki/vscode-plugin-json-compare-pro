@@ -3,7 +3,7 @@
   "type": "module",
   "displayName": "JSON Compare Pro",
   "description": "Compare JSON files with rules",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "engines": {
     "vscode": "^1.101.0"
   },
@@ -49,7 +49,9 @@
     }
   },
   "scripts": {
+    "vsce:login": "vsce login qri",
     "vsce:package": "vsce package",
+    "vsce:publish": "vsce publish",
     "vscode:prepublish": "npm run package",
     "compile": "webpack",
     "watch": "webpack --watch",

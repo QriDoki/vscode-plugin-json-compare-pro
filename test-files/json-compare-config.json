@@ -4,6 +4,7 @@
     "diffConfig": {
         "arraySortKey": {
             "$.scores[*]": "$.subject"
-        }
+        },
+        "dissmissNull": true
     }
 }
