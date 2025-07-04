@@ -5,6 +5,6 @@
         "arraySortKey": {
             "$.scores[*]": "$.subject"
         },
-        "dissmissNull": true
+        "ignoreNull": true
     }
 }
