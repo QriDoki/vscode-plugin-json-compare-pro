@@ -13,3 +13,6 @@ vsc-extension-quickstart.md
 **/*.ts
 **/.vscode-test.*
 test-files/**
+*.psd
+*.vsix
+.github

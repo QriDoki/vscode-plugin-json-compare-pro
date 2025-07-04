@@ -3,8 +3,8 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import { sortJsonRecursively } from './sortJson';
-import { formatJson } from './formatJson';
+import { preProcess } from './preprocess/preprocess';
+
 
 // 注意: 内存泄露
 let diffConfigs: any = {}
@@ -27,10 +27,9 @@ class JsonCompareContentProvider implements vscode.TextDocumentContentProvider {
 			const jsonObj = JSON.parse(content);
 			
 			// 使用 sortJsonRecursively 和 formatJson 处理
-			const sortedJson = sortJsonRecursively(jsonObj, diffConfigs[filePath]);
-			const formattedJson = formatJson(sortedJson, 2);
+			const preProcessed = preProcess(jsonObj, diffConfigs[filePath])
 			
-			return formattedJson;
+			return preProcessed;
 		} catch (error) {
 			return `Error reading or parsing file: ${error}`;
 		}
